@@ -1,0 +1,133 @@
+{
+    "properties": {
+        "name": "potentiometer",
+        "id": "potentiometer",
+        "project": "two",
+        "environment": {
+            "type": "microflo"
+        }
+    },
+    "inports": {},
+    "outports": {},
+    "groups": [],
+    "processes": {
+        "AnalogRead_ltvbd": {
+            "component": "AnalogRead",
+            "metadata": {
+                "label": "AnalogRead",
+                "x": 432,
+                "y": 216
+            }
+        },
+        "Timer_e9fik": {
+            "component": "Timer",
+            "metadata": {
+                "label": "Timer",
+                "x": 288,
+                "y": 216
+            }
+        },
+        "PwmWrite_6wmfx": {
+            "component": "PwmWrite",
+            "metadata": {
+                "label": "PwmWrite",
+                "x": 720,
+                "y": 216
+            }
+        },
+        "MapLinear_gla3q": {
+            "component": "MapLinear",
+            "metadata": {
+                "label": "MapLinear",
+                "x": 576,
+                "y": 216
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "Timer_e9fik",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "AnalogRead_ltvbd",
+                "port": "trigger"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "AnalogRead_ltvbd",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "MapLinear_gla3q",
+                "port": "in"
+            },
+            "metadata": {
+                "route": null
+            }
+        },
+        {
+            "src": {
+                "process": "MapLinear_gla3q",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "PwmWrite_6wmfx",
+                "port": "dutycycle"
+            },
+            "metadata": {}
+        },
+        {
+            "data": "1",
+            "tgt": {
+                "process": "AnalogRead_ltvbd",
+                "port": "pin"
+            }
+        },
+        {
+            "data": "6",
+            "tgt": {
+                "process": "PwmWrite_6wmfx",
+                "port": "pin"
+            }
+        },
+        {
+            "data": "10",
+            "tgt": {
+                "process": "Timer_e9fik",
+                "port": "interval"
+            }
+        },
+        {
+            "data": "0",
+            "tgt": {
+                "process": "MapLinear_gla3q",
+                "port": "inmin"
+            }
+        },
+        {
+            "data": "1024",
+            "tgt": {
+                "process": "MapLinear_gla3q",
+                "port": "inmax"
+            }
+        },
+        {
+            "data": "0",
+            "tgt": {
+                "process": "MapLinear_gla3q",
+                "port": "outmin"
+            }
+        },
+        {
+            "data": "100",
+            "tgt": {
+                "process": "MapLinear_gla3q",
+                "port": "outmax"
+            }
+        }
+    ]
+}
